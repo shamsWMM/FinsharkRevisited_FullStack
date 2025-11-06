@@ -1,13 +1,33 @@
-api/bin/
-api/migrations/
-api/obj/
-.DS_Store
-*.sln
-*.json
-*.csproj
-*.http
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
 
-# Build results
+# Build outputs
+dist/
+build/
+coverage/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+*.tsbuildinfo
+.eslintcache
+
+# .NET Build results
+[Bb]in/
+[Oo]bj/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -18,37 +38,48 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
-[Oo]bj/
 [Ll]og/
 [Ll]ogs/
 
-# .NET Core
+# .NET files
+*.dll
+*.exe
+*.pdb
+*.suo
+*.user
 project.lock.json
 project.fragment.lock.json
 artifacts/
-
-# ASP.NET Scaffolding
-ScaffoldingReadMe.txt
-
-# NuGet Packages
 *.nupkg
-# NuGet Symbol Packages
 *.snupkg
-
-# Others
-~$*
-*~
-CodeCoverage/
-
-# MSBuild Binary and Structured Log
 *.binlog
 
-# MSTest test Results
+# Visual Studio / Rider
+.vs/
+.vscode/
+.idea/
+*.userprefs
+
+# Test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
-
-# NUnit
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+CodeCoverage/
+
+# ASP.NET
+ScaffoldingReadMe.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*
+*~
+
+*.sln
+api/Migrations/*
+*.json
+!package.json
+*.http
