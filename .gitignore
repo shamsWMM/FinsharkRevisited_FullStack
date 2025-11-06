@@ -4,6 +4,8 @@ api/obj/
 .DS_Store
 *.sln
 *.json
+*.csproj
+*.http
 
 # Build results
 [Dd]ebug/
