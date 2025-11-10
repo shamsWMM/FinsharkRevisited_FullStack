@@ -1,0 +1,33 @@
+.card {
+  width: 20%;
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10%;
+  overflow: hidden;
+  box-shadow: rgba(50, 50, 93, 0.25) 0rem 0.1rem 0.2rem -0.05rem,
+    rgba(0, 0, 0, 0.3) 0rem 0.2rem 0.25rem -0.07rem;
+}
+
+.card img {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  margin: 0.1rem;
+}
+
+.card .details {
+    margin: 1rem;
+}
+
+.card .details h2 {
+    font-weight: bolder;
+}
+
+.card .details p {
+    text-decoration: uppercase;
+    font-weight: bold;
+}

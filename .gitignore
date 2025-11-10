@@ -82,4 +82,7 @@ Desktop.ini
 api/Migrations/*
 *.json
 !package.json
+!frontend/*.json
+package-lock.json
 *.http
+frontend/README.md
