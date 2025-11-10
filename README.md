@@ -5,5 +5,5 @@ Refer to the older project's [README.md](https://github.com/shamsWMM/Finshark/bl
 
 # React Project
 ```bash
-npm create vite frontend -- --template react-ts
+npm create vite@latest frontend -- --template react-ts
 ```
