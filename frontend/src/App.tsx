@@ -1,10 +1,12 @@
-import './App.css'
-import CardList from './components/CardList/CardList'
+import "./App.css"
+import CardList from "./components/CardList/CardList"
+import Search from "./components/Search/Search"
 
 function App() {
   return (
     <>
-      <CardList/>
+      <Search />
+      <CardList />
     </>
   )
 }
