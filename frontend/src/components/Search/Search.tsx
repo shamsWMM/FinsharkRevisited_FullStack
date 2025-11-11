@@ -1,16 +1,12 @@
-import { useState } from "react";
 import "./Search.css";
 
-const Search = () => {
-    const [search, setSearch] = useState("");
+interface Props {
+    handleButtonClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    search: string | undefined;
+}
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
-    };
-
-    const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    };
-
+const Search = ({search, handleInputChange, handleButtonClick} : Props) => {
     return (
         <div>
             <input value={search} onChange={handleInputChange} />
