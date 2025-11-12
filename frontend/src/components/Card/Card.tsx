@@ -1,25 +1,28 @@
+import type { SyntheticEvent } from "react";
+import type { CompanySearch } from "../../company";
+import Stock from "../Portfolio/Stock/Stock";
 import "./Card.css";
 
 interface Props {
-    companyName: string;
-    ticker: string;
-    price: number;
+    id: string;
+    company: CompanySearch;
+    onStockCreate: (e: SyntheticEvent) => void;
 }
 
-const Card = ({companyName, ticker, price}: Props) => {
+const Card = ({id, company, onStockCreate}: Props) => {
     return (
         <div className="card">
             <img
-                src="https://images.unsplash.com/photo-1612428978260-2b9c7df20150?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
-                alt="Image"
+                alt="company logo"
             />
             <div className="details">
-                <h2>{companyName} ({ticker})</h2>
-                <p>${price}</p>
+                <h2>{company.name} ({company.symbol})</h2>
+                <p>${company.currency}</p>
             </div>
             <p className="info">
-                Lorem ipsum dolor, sit amet consectetur.
+                {company.exchange} - {company.exchangeFullName}
             </p>
+            <Stock onStockCreate={onStockCreate} symbol={company.symbol}/>
         </div>);
 };
 

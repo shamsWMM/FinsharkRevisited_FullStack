@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type SyntheticEvent } from "react";
 import "./App.css"
 import CardList from "./components/CardList/CardList"
 import Search from "./components/Search/Search"
@@ -14,6 +14,11 @@ function App() {
     setSearch(e.target.value);
   };
 
+  const onStockCreate = (e: SyntheticEvent) => {
+    e.preventDefault();
+    console.log("Event",e);
+  }
+
   const handleButtonClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const result = await searchCompanies(search);
     if (typeof result === "string") {
@@ -28,7 +33,7 @@ function App() {
     <>
       <Search handleButtonClick={handleButtonClick} handleInputChange={handleInputChange} search={search} />
       {serverError && <h1>{serverError}</h1>}
-      <CardList />
+      <CardList companies={searchResult} onStockCreate={onStockCreate}/>
     </>
   )
 }
