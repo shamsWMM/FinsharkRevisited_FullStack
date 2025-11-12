@@ -27,6 +27,7 @@ function App() {
   return (
     <>
       <Search handleButtonClick={handleButtonClick} handleInputChange={handleInputChange} search={search} />
+      {serverError && <h1>{serverError}</h1>}
       <CardList />
     </>
   )
