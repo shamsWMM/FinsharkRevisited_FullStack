@@ -19,19 +19,19 @@ function App() {
     console.log("Event",e);
   }
 
-  const handleButtonClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onSearchSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault();
     const result = await searchCompanies(search);
     if (typeof result === "string") {
       setServerError(result);
     } else if (Array.isArray(result)) {
       setSearchResult(result);
     }
-    console.log(searchResult);
   };
 
   return (
     <>
-      <Search handleButtonClick={handleButtonClick} handleInputChange={handleInputChange} search={search} />
+      <Search onSearchSubmit={onSearchSubmit} handleInputChange={handleInputChange} search={search} />
       {serverError && <h1>{serverError}</h1>}
       <CardList companies={searchResult} onStockCreate={onStockCreate}/>
     </>
