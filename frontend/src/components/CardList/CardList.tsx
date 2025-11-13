@@ -9,7 +9,7 @@ interface Props {
     onStockCreate: (e: SyntheticEvent) => void;
 }
 
-const CardList = ({ companies, onStockCreate }: Props) => {
+const CardList = ({companies, onStockCreate }: Props) => {
     return <>
         {companies.length > 0 ?
             (companies.map(copmpany => {

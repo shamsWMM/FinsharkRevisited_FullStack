@@ -9,7 +9,7 @@ interface Props {
     onStockCreate: (e: SyntheticEvent) => void;
 }
 
-const Card = ({id, company, onStockCreate}: Props) => {
+const Card = ({company, onStockCreate}: Props) => {
     return (
         <div className="card">
             <img
