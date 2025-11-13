@@ -4,9 +4,11 @@ import CardList from "./components/CardList/CardList"
 import Search from "./components/Search/Search"
 import type { CompanySearch } from "./company";
 import { searchCompanies } from "./api";
+import StockList from "./components/Portfolio/Stock/StockList";
 
 function App() {
   const [search, setSearch] = useState("");
+  const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
   const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
   const [serverError, setServerError] = useState<string>("");
 
@@ -14,9 +16,18 @@ function App() {
     setSearch(e.target.value);
   };
 
-  const onStockCreate = (e: SyntheticEvent) => {
+  const onStockCreate = (e: any) => {
     e.preventDefault();
-    console.log("Event",e);
+    const stockValue = e.target[0].value;
+    if (typeof stockValue !== "string" || stockValue.trim() === "")
+      return;
+
+    const existsInPortfolio = portfolioValues.includes(stockValue.toLowerCase());
+    if (existsInPortfolio)
+      return;
+
+    const updatedPortfolio = [... portfolioValues, stockValue.toLocaleLowerCase()];
+    setPortfolioValues(updatedPortfolio);
   }
 
   const onSearchSubmit = async (e: SyntheticEvent) => {
@@ -32,6 +43,7 @@ function App() {
   return (
     <>
       <Search onSearchSubmit={onSearchSubmit} handleInputChange={handleInputChange} search={search} />
+      <StockList stockValues={portfolioValues} />
       {serverError && <h1>{serverError}</h1>}
       <CardList companies={searchResult} onStockCreate={onStockCreate}/>
     </>

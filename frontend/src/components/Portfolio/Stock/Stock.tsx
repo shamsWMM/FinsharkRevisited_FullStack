@@ -1,7 +1,5 @@
-import type { SyntheticEvent } from "react";
-
 type Props = {
-    onStockCreate: (e: SyntheticEvent) => void;
+    onStockCreate: (e: any) => void;
     symbol: string;
 };
 
