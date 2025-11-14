@@ -9,8 +9,8 @@ interface Props {
     onStockCreate: (e: SyntheticEvent) => void;
 }
 
-const CardList = ({companies, onStockCreate }: Props) => {
-    return <>
+const CardList = ({ companies, onStockCreate }: Props) => {
+    return (<div>
         {companies.length > 0 ?
             (companies.map(copmpany => {
                 return <Card
@@ -20,8 +20,10 @@ const CardList = ({companies, onStockCreate }: Props) => {
                     onStockCreate={onStockCreate}
                 />
             })) :
-            (<h1>No results found.</h1>)}
-    </>;
+            (<p className="mb-3 mt-3 text-xl font-semibold text-center md:text-xl">
+                No results found.
+            </p>)}
+    </div>);
 };
 
 export default CardList;

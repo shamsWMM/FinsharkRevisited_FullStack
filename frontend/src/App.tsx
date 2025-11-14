@@ -5,6 +5,7 @@ import Search from "./components/Search/Search"
 import type { CompanySearch } from "./company";
 import { searchCompanies } from "./api";
 import StockList from "./components/Portfolio/StockList/StockList";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -56,6 +57,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <Search onSearchSubmit={onSearchSubmit} handleInputChange={handleInputChange} search={search} />
       <StockList stockValues={portfolioValues} onStockDelete={onStockDelete} />
       {serverError && <h1>{serverError}</h1>}
