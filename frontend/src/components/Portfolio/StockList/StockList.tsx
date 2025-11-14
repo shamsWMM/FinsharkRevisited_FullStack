@@ -1,5 +1,5 @@
 import type { SyntheticEvent } from "react";
-import StockCard from "../../Card/StockCard";
+import StockCard from "../StockCard/StockCard";
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
@@ -17,7 +17,8 @@ const StockList = ({ stockValues, onStockDelete }: Props) => {
                     {stockValues.length > 0 ? (
                         stockValues.map(
                             (stockValue) => {
-                                return (<StockCard
+                                return (
+                                <StockCard
                                     key={uuidv4()}
                                     stockValue={stockValue}
                                     onStockDelete={onStockDelete} />

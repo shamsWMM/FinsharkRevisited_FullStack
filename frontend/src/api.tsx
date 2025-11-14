@@ -15,4 +15,4 @@ export const searchCompanies = async (query: string) => {
             return "Unexpected error.";
         }
     }
-}
+};

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import hero from "./finsharkHero.png";
 import "./Hero.css";
 
@@ -14,12 +15,12 @@ const Hero = () => {
             news.
           </p>
           <div className="mx-auto lg:mx-0">
-            <a
-              href=""
-              className="py-5 px-10 text-2xl font-bold text-white bg-lightGreen rounded lg:py-4 hover:opacity-70"
+            <Link
+              to="/search"
+              className="py-5 px-10 text-2xl font-bold text-black bg-lightGreen rounded lg:py-4 hover:opacity-70"
             >
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
         <div className="mb-24 mx-auto md:w-180 md:px-10 lg:mb-0 lg:w-1/2">
