@@ -1,9 +1,9 @@
 import Hero from "../../components/Hero/Hero";
 
-const page = () => {
+const HomePage = () => {
     return (<div>
         <Hero />
     </div>);
 };
 
-export default page;
+export default HomePage;

@@ -19,7 +19,7 @@ export const router = createBrowserRouter(
                     element: <SearchPage />
                 },
                 {
-                    path: "company/:ticcker",
+                    path: "company/:ticker",
                     element: <CompanyPage />
                 }
             ]

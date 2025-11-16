@@ -5,7 +5,7 @@ import Search from "../../components/Search/Search";
 import type { CompanySearch } from "../../company";
 import { searchCompanies } from "../../api";
 
-const page = () => {
+const SearchPage = () => {
     const [search, setSearch] = useState("");
     const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
     const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
@@ -63,4 +63,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default SearchPage;
