@@ -1,4 +1,4 @@
-export const testIncomeStatementData = [
+export const incomeStatementTestData = [
   {
     date: "2022-09-24",
     symbol: "AAPL",

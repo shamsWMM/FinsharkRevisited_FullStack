@@ -1,5 +1,5 @@
-import {testIncomeStatementData} from "./testData";
-const data = testIncomeStatementData;
+import {incomeStatementTestData} from "./testData";
+const data = incomeStatementTestData;
 type Company = (typeof data)[0];
 const config = [
   {

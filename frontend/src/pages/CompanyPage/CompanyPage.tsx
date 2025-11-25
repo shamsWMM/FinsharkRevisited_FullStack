@@ -38,10 +38,10 @@ const CompanyPage = () => {
 
     return isLoading ?
         <p>Loading company profile...</p> :
-        company ?
+        ticker && company ?
             (<div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
                 <Sidebar />
-                <CompanyDashboard>
+                <CompanyDashboard ticker={ticker}>
                     <Tile title={company.companyName} subtitle={company.city} />
                 </CompanyDashboard>
             </div>) :
