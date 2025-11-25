@@ -14,7 +14,7 @@ const DesignPage = () => {
             Website Design Guide
         </h1>
         <RatioList data={incomeStatementTestData} config={tableConfig}/>
-        <Table />
+        <Table data={incomeStatementTestData} config={{tableConfig}}/>
     </>);
 };
 
