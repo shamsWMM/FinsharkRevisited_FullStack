@@ -148,15 +148,18 @@ export interface CompanyBalanceSheet {
   symbol: string;
   reportedCurrency: string;
   cik: string;
-  fillingDate: string;
+  filingDate: string;
   acceptedDate: string;
-  calendarYear: string;
+  fiscalYear: string;
   period: string;
   cashAndCashEquivalents: number;
   shortTermInvestments: number;
   cashAndShortTermInvestments: number;
   netReceivables: number;
+  accountsReceivables: number;
+  otherReceivables: number;
   inventory: number;
+  prepaids: number;
   otherCurrentAssets: number;
   totalCurrentAssets: number;
   propertyPlantEquipmentNet: number;
@@ -169,13 +172,18 @@ export interface CompanyBalanceSheet {
   totalNonCurrentAssets: number;
   otherAssets: number;
   totalAssets: number;
+  totalPayables: number;
   accountPayables: number;
+  otherPayables: number;
+  accruedExpenses: number;
   shortTermDebt: number;
+  capitalLeaseObligationsCurrent: number;
   taxPayables: number;
   deferredRevenue: number;
   otherCurrentLiabilities: number;
   totalCurrentLiabilities: number;
   longTermDebt: number;
+  capitalLeaseObligationsNonCurrent: number;
   deferredRevenueNonCurrent: number;
   deferredTaxLiabilitiesNonCurrent: number;
   otherNonCurrentLiabilities: number;
@@ -183,21 +191,20 @@ export interface CompanyBalanceSheet {
   otherLiabilities: number;
   capitalLeaseObligations: number;
   totalLiabilities: number;
+  treasuryStock: number;
   preferredStock: number;
   commonStock: number;
   retainedEarnings: number;
+  additionalPaidInCapital: number;
   accumulatedOtherComprehensiveIncomeLoss: number;
-  othertotalStockholdersEquity: number;
+  otherTotalStockholdersEquity: number;
   totalStockholdersEquity: number;
   totalEquity: number;
-  totalLiabilitiesAndStockholdersEquity: number;
   minorityInterest: number;
   totalLiabilitiesAndTotalEquity: number;
   totalInvestments: number;
   totalDebt: number;
   netDebt: number;
-  link: string;
-  finalLink: string;
 }
 
 export interface CompanyCashFlow {
@@ -245,46 +252,46 @@ export interface CompanyCashFlow {
 
 export interface CompanyKeyMetrics {
   symbol: string;
-          marketCap:number
-        enterpriseValueTTM:number
-        evToSalesTTM: number
-        evToOperatingCashFlowTTM: number
-        evToFreeCashFlowTTM: number
-        evToEBITDATTM: number
-        netDebtToEBITDATTM: number
-        currentRatioTTM: number
-        incomeQualityTTM: number
-        grahamNumberTTM: number
-        grahamNetNetTTM: number
-        taxBurdenTTM: number
-        interestBurdenTTM:number
-        workingCapitalTTM: number
-        investedCapitalTTM: number
-        returnOnAssetsTTM: number
-        operatingReturnOnAssetsTTM: number
-        returnOnTangibleAssetsTTM: number
-        returnOnEquityTTM: number
-        returnOnInvestedCapitalTTM: number
-        returnOnCapitalEmployedTTM: number
-        earningsYieldTTM: number
-        freeCashFlowYieldTTM: number
-        capexToOperatingCashFlowTTM:number
-        capexToDepreciationTTM:number
-        capexToRevenueTTM:number
-        salesGeneralAndAdministrativeToRevenueTTM: number
-        researchAndDevelopementToRevenueTTM:number
-        stockBasedCompensationToRevenueTTM: number
-        intangiblesToTotalAssetsTTM: number
-        averageReceivablesTTM:number
-        averagePayablesTTM:number
-        averageInventoryTTM:number
-        daysOfSalesOutstandingTTM: number
-        daysOfPayablesOutstandingTTM:number
-        daysOfInventoryOutstandingTTM:number
-        operatingCycleTTM: number
-        cashConversionCycleTTM: number
-        freeCashFlowToEquityTTM: number
-        freeCashFlowToFirmTTM: number
-        tangibleAssetValueTTM:number
-        netCurrentAssetValueTTM: number
+  marketCap: number
+  enterpriseValueTTM: number
+  evToSalesTTM: number
+  evToOperatingCashFlowTTM: number
+  evToFreeCashFlowTTM: number
+  evToEBITDATTM: number
+  netDebtToEBITDATTM: number
+  currentRatioTTM: number
+  incomeQualityTTM: number
+  grahamNumberTTM: number
+  grahamNetNetTTM: number
+  taxBurdenTTM: number
+  interestBurdenTTM: number
+  workingCapitalTTM: number
+  investedCapitalTTM: number
+  returnOnAssetsTTM: number
+  operatingReturnOnAssetsTTM: number
+  returnOnTangibleAssetsTTM: number
+  returnOnEquityTTM: number
+  returnOnInvestedCapitalTTM: number
+  returnOnCapitalEmployedTTM: number
+  earningsYieldTTM: number
+  freeCashFlowYieldTTM: number
+  capexToOperatingCashFlowTTM: number
+  capexToDepreciationTTM: number
+  capexToRevenueTTM: number
+  salesGeneralAndAdministrativeToRevenueTTM: number
+  researchAndDevelopementToRevenueTTM: number
+  stockBasedCompensationToRevenueTTM: number
+  intangiblesToTotalAssetsTTM: number
+  averageReceivablesTTM: number
+  averagePayablesTTM: number
+  averageInventoryTTM: number
+  daysOfSalesOutstandingTTM: number
+  daysOfPayablesOutstandingTTM: number
+  daysOfInventoryOutstandingTTM: number
+  operatingCycleTTM: number
+  cashConversionCycleTTM: number
+  freeCashFlowToEquityTTM: number
+  freeCashFlowToFirmTTM: number
+  tangibleAssetValueTTM: number
+  netCurrentAssetValueTTM: number
 }

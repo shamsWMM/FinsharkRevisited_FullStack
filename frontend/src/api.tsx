@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch } from "./company";
+import type { CompanyBalanceSheet, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch } from "./company";
 
 export const searchCompanies = async (query: string) => {
     try {
@@ -56,6 +56,23 @@ Promise<CompanyIncomeStatement[] | string> => {
     try {
         const { data } = await axios.get<CompanyIncomeStatement[]>(
             `https://financialmodelingprep.com/stable/income-statement?symbol=${query}&apikey=${import.meta.env.VITE_FMP_API_KEY}`);
+        return data;
+    } catch (e) {
+        if (axios.isAxiosError(e)) {
+            console.log("error message: ", e.message);
+            return e.message;
+        } else {
+            console.log("unexpected error: ", e);
+            return "Unexpected error.";
+        }
+    }
+};
+
+export const getCompanyBalanceSheet = async (query: string): 
+Promise<CompanyBalanceSheet[] | string> => {
+    try {
+        const { data } = await axios.get<CompanyBalanceSheet[]>(
+            `https://financialmodelingprep.com/stable/balance-sheet-statement?symbol=${query}&apikey=${import.meta.env.VITE_FMP_API_KEY}`);
         return data;
     } catch (e) {
         if (axios.isAxiosError(e)) {

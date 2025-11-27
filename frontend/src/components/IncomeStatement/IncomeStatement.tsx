@@ -36,4 +36,5 @@ const IncomeStatement = () => {
         </>
     );
 };
+
 export default IncomeStatement;
