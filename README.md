@@ -7,3 +7,9 @@ Refer to the older project's [README.md](https://github.com/shamsWMM/Finshark/bl
 ```bash
 npm create vite@latest frontend -- --template react-ts
 ```
+
+# React App Using Docker
+```bash
+docker build -t finshark-frontend:latest .
+docker run --rm -p 8080:8080 finshark-frontend:latest
+```
