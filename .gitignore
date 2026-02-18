@@ -85,3 +85,4 @@ api/Migrations/*
 !frontend/*.json
 *.http
 frontend/README.md
+docker-compose.override.yml

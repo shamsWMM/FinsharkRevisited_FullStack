@@ -1,7 +1,32 @@
 FROM node:22-slim
 
-WORKDIR /app
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    ripgrep \
+    fd-find \
+    tar \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY package*.json ./
+# Detect architecture, download correct binary, symlink cleanly
+RUN ARCH=$(uname -m) && \
+    if [ "$ARCH" = "aarch64" ]; then \
+      NVIM_ASSET="nvim-linux-arm64.tar.gz"; \
+      NVIM_DIR="nvim-linux-arm64"; \
+    else \
+      NVIM_ASSET="nvim-linux-x86_64.tar.gz"; \
+      NVIM_DIR="nvim-linux-x86_64"; \
+    fi && \
+    curl -Lo /tmp/nvim.tar.gz \
+      "https://github.com/neovim/neovim/releases/download/stable/${NVIM_ASSET}" \
+    && tar -C /opt -xzf /tmp/nvim.tar.gz \
+    && ln -s /opt/${NVIM_DIR}/bin/nvim /usr/local/bin/nvim \
+    && rm /tmp/nvim.tar.gz
+
+WORKDIR /workspace/frontend
+
+COPY frontend/package*.json ./
 
 RUN npm install
+
+RUN npm install -g typescript-language-server typescript

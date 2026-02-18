@@ -1,0 +1,21 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.dev
+    ports:
+      - "5173:5173"
+    working_dir: /workspace/frontend    # vite commands run from here
+    init: true
+    env_file:
+      - frontend/.env
+    volumes:
+      - .:/workspace
+      - /workspace/frontend/node_modules
+      - ./.docker/nvim:/root/.config/nvim:ro
+      - nvim-plugins:/root/.local/share/nvim
+    stdin_open: true
+    tty: true
+
+volumes:
+  nvim-plugins:
