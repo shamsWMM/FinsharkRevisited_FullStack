@@ -207,7 +207,7 @@ export interface CompanyBalanceSheet {
   netDebt: number;
 }
 
-export interface CompanyCashFlow {
+export interface CompanyCashflow {
   date: string;
   symbol: string;
   reportedCurrency: string;
