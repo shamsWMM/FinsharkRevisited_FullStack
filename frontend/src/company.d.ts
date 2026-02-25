@@ -295,3 +295,8 @@ export interface CompanyKeyMetrics {
   tangibleAssetValueTTM: number
   netCurrentAssetValueTTM: number
 }
+
+export interface CompanyComparableData {
+  symbol: string;
+  peersList: string[];
+}

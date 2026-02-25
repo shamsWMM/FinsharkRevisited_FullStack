@@ -6,6 +6,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import CompanyDashboard from "../../components/CompanyDashboard/CompanyDashboard";
 import Tile from "../../components/Tile/Tile";
 import Spinner from "../../components/Spinner/Spinner";
+import Comparable from "../../components/Comparable/Comparable";
 
 const CompanyPage = () => {
   let { ticker } = useParams();
@@ -50,6 +51,7 @@ const CompanyPage = () => {
       <Tile title={"Price"} subtitle={company.price.toString()} />
       <Tile title={"Sector"} subtitle={company.sector} />
       <Tile title={"Website"} subtitle={company.website} />
+      <Comparable ticker={company.symbol} />
       <p className="bg-white shadow rounded text-medium text-gray-900 p-3 mt-1 m-4">
       {company.description} 
       </p>
