@@ -51,7 +51,7 @@ const BalanceSheet = () => {
         <>
             {balanceSheet ?
                 <RatioList data={balanceSheet} config={config} /> :
-                "Loading ..."}
+                <p>hi</p>}
         </>
     );
 };
