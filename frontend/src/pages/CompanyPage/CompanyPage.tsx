@@ -8,6 +8,7 @@ import Tile from "../../components/Tile/Tile";
 import Spinner from "../../components/Spinner/Spinner";
 import Comparable from "../../components/Comparable/Comparable";
 import TenK from "../../components/TenK/TenK";
+import { formatDollarValue } from "../../helpers/NumberFormatter";
 
 const CompanyPage = () => {
   let { ticker } = useParams();
@@ -49,7 +50,7 @@ const CompanyPage = () => {
       <Sidebar />
       <CompanyDashboard ticker={ticker}>
       <Tile title={"Company Name"} subtitle={company.companyName} />
-      <Tile title={"Price"} subtitle={company.price.toString()} />
+      <Tile title={"Price"} subtitle={formatDollarValue(company.price)} />
       <Tile title={"Sector"} subtitle={company.sector} />
       <Tile title={"Website"} subtitle={company.website} />
       <Comparable ticker={company.symbol} />

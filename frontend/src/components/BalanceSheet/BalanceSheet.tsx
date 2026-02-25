@@ -4,35 +4,42 @@ import { useOutletContext } from "react-router-dom";
 import { getCompanyBalanceSheet } from "../../api";
 import RatioList from "../RatioList/RatioList";
 import Spinner from "../Spinner/Spinner";
-
+import { formatDollarValue, formatRatio } from "../../helpers/NumberFormatter";
 const config = [
     {
         label: "Cash",
-        render: (company: CompanyBalanceSheet) => company.cashAndCashEquivalents,
+        render: (company: CompanyBalanceSheet) =>
+          formatDollarValue(company.cashAndCashEquivalents),
     },
     {
         label: "Inventory",
-        render: (company: CompanyBalanceSheet) => company.inventory,
+        render: (company: CompanyBalanceSheet) =>
+          formatDollarValue(company.inventory),
     },
     {
         label: "Other Current Assets",
-        render: (company: CompanyBalanceSheet) => company.otherCurrentAssets,
+        render: (company: CompanyBalanceSheet) =>
+          formatDollarValue(company.otherCurrentAssets),
     },
     {
         label: "Minority Interest",
-        render: (company: CompanyBalanceSheet) => company.minorityInterest,
+        render: (company: CompanyBalanceSheet) =>
+          formatRatio(company.minorityInterest),
     },
     {
         label: "Other Non-Current Assets",
-        render: (company: CompanyBalanceSheet) => company.otherNonCurrentAssets,
+        render: (company: CompanyBalanceSheet) =>
+          formatDollarValue(company.otherNonCurrentAssets),
     },
     {
         label: "Long Term Debt",
-        render: (company: CompanyBalanceSheet) => company.longTermDebt,
+        render: (company: CompanyBalanceSheet) =>
+          formatDollarValue(company.longTermDebt),
     },
     {
         label: "Total Debt",
-        render: (company: CompanyBalanceSheet) => company.otherCurrentLiabilities,
+        render: (company: CompanyBalanceSheet) =>
+          formatDollarValue(company.otherCurrentLiabilities),
     },
 ];
 

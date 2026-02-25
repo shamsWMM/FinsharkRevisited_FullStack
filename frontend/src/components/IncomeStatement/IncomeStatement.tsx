@@ -4,6 +4,7 @@ import { getCompanyIncomeStatement } from "../../api";
 import type { CompanyIncomeStatement } from "../../company";
 import Table from "../Table/Table";
 import Spinner from "../Spinner/Spinner";
+import { formatDollarValue } from "../../helpers/NumberFormatter";
 
 const config = [
   {
@@ -12,7 +13,8 @@ const config = [
   },
     {
       label: "Cost of Revenue",
-      render: (company: CompanyIncomeStatement) => company.costOfRevenue,
+      render: (company: CompanyIncomeStatement) =>
+        formatDollarValue(company.costOfRevenue),
     },
 ];
 

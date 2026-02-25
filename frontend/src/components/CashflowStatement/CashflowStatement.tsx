@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getCompanyCashflow } from "../../api";
 import Table from "../Table/Table";
 import Spinner from "../Spinner/Spinner";
+import { formatDollarValue, formatNumber } from "../../helpers/NumberFormatter";
 
 const config = [
   {
@@ -13,37 +14,37 @@ const config = [
     {
       label: "Operating Cashflow",
       render: (company: CompanyCashflow) =>
-      company.operatingCashFlow,
+        formatDollarValue(company.operatingCashFlow),
     },
     {
       label: "Investing Cashflow",
       render: (company: CompanyCashflow) =>
-      company.netCashUsedForInvestingActivites,
+        formatDollarValue(company.netCashUsedForInvestingActivites),
     },
     {
       label: "Financing Cashflow",
       render: (company: CompanyCashflow) =>
-      company.netCashUsedProvidedByFinancingActivities,
+        formatDollarValue(company.netCashUsedProvidedByFinancingActivities),
     },
     {
       label: "Cash At End of Period",
       render: (company: CompanyCashflow) =>
-      company.cashAtEndOfPeriod,
+        formatDollarValue(company.cashAtEndOfPeriod),
     },
     {
       label: "CapEX",
       render: (company: CompanyCashflow) =>
-      company.capitalExpenditure,
+        formatDollarValue(company.capitalExpenditure),
     },
     {
       label: "Issuance Of Stock",
       render: (company: CompanyCashflow) =>
-      company.commonStockIssued,
+      formatNumber(company.commonStockIssued),
     },
     {
       label: "Free Cash Flow",
       render: (company: CompanyCashflow) =>
-      company.freeCashFlow,
+        formatDollarValue(company.freeCashFlow),
     },
 ];
 
