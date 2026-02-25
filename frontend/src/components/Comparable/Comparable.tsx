@@ -14,7 +14,7 @@ const Comparable = ({ ticker }: Props) => {
     const getComparable = async () => {
       const value = await getComparableData(ticker);
       if (typeof value === "string") return;
-      if (value.length > 0) {          // guard against empty array
+      if (value.length > 0) {
         setCompanyData(value[0]);
       }
     };

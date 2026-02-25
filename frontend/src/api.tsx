@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { CompanyBalanceSheet, CompanyCashflow, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch, CompanyComparableData } from "./company";
+import type { CompanyBalanceSheet, CompanyCashflow, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch, CompanyComparableData, CompanyTenK } from "./company";
 
 export const searchCompanies = async (query: string) => {
     try {
@@ -107,6 +107,24 @@ Promise<CompanyComparableData[] | string> => {
     try {
         const { data } = await axios.get<CompanyComparableData[]>(
             `https://financialmodelingprep.com/stable/stock-peers?symbol=${query}&apikey=${import.meta.env.VITE_FMP_API_KEY}`);
+        return data;
+    } catch (e) {
+        if (axios.isAxiosError(e)) {
+            console.log("error message: ", e.message);
+            return e.message;
+        } else {
+            console.log("unexpected error: ", e);
+            return "Unexpected error.";
+        }
+    }
+};
+
+export const getTenK = async (query: string): 
+Promise<CompanyTenK[] | string> => {
+    try {
+        const { data } = await axios.get<CompanyTenK[]>(
+            `https://financialmodelingprep.com/api/v3/sec_filings/${query}?type=10-K&apikey=${import.meta.env.VITE_FMP_API_KEY}`);
+        console.log("Raw API response:", JSON.stringify(data, null, 2));
         return data;
     } catch (e) {
         if (axios.isAxiosError(e)) {
