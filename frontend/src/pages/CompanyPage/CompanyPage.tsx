@@ -42,7 +42,13 @@ const CompanyPage = () => {
             (<div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
                 <Sidebar />
                 <CompanyDashboard ticker={ticker}>
-                    <Tile title={company.companyName} subtitle={company.city} />
+                    <Tile title={"Company Name"} subtitle={company.companyName} />
+                    <Tile title={"Price"} subtitle={company.price.toString()} />
+                    <Tile title={"Sector"} subtitle={company.sector} />
+                    <Tile title={"Website"} subtitle={company.website} />
+                    <p className="bg-white shadow rounded text-medium text-gray-900 p-3 mt-1 m-4">
+                    {company.description} 
+                    </p>
                 </CompanyDashboard>
             </div>) :
             <div>

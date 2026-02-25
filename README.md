@@ -6,6 +6,8 @@ Refer to the older project's [README.md](https://github.com/shamsWMM/Finshark/bl
 # React Project
 ```bash
 npm create vite@latest frontend -- --template react-ts
+npm run build
+npm run dev
 ```
 ## Development With Docker (no local Node required)
 ```bash
