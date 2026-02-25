@@ -3,7 +3,7 @@ import type { CompanyCashflow } from "../../company";
 import { useState, useEffect } from "react";
 import { getCompanyCashflow } from "../../api";
 import Table from "../Table/Table";
-
+import Spinner from "../Spinner/Spinner";
 
 const config = [
   {
@@ -62,7 +62,7 @@ const CashflowStatement = () => {
   return cashflowData ? (
     <Table config={config} data={cashflowData}></Table>
   ) : (
-  <h1> No results! </h1>
+  <Spinner />
   );
 };
 

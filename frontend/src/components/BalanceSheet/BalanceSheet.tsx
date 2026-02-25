@@ -3,6 +3,7 @@ import type { CompanyBalanceSheet } from "../../company";
 import { useOutletContext } from "react-router-dom";
 import { getCompanyBalanceSheet } from "../../api";
 import RatioList from "../RatioList/RatioList";
+import Spinner from "../Spinner/Spinner";
 
 const config = [
     {
@@ -49,9 +50,11 @@ const BalanceSheet = () => {
     }, []);
     return (
         <>
-            {balanceSheet ?
-                <RatioList data={balanceSheet} config={config} /> :
-                <p>hi</p>}
+            {balanceSheet ? (
+                <RatioList data={balanceSheet} config={config} /> 
+            ) : (
+                <Spinner />
+            )}
         </>
     );
 };
