@@ -3,21 +3,43 @@ Redo [backend (Dotnet) project](https://github.com/shamsWMM/Finshark.git) and im
 
 Refer to the older project's [README.md](https://github.com/shamsWMM/Finshark/blob/0873fc60ebb038c54a1c8598889b5d727aeaa263/README.md) for dotnet project notes.
 
+## Project Structure
+├── docker-compose.yml
+├── frontend/ # React + Vite + TypeScript
+│   └── Dockerfile.dev
+└── api/ # ASP.NET Web API (.NET 8)
+    └── Dockerfile.dev
+
 # React Project
 ```bash
 npm create vite@latest frontend -- --template react-ts
 npm run build
 npm run dev
 ```
-## Development With Docker (no local Node required)
-```bash
-docker compose up --build # first time
-docker compose up
 
-docker-compose up -d # optionally open in detached mode
-docker-compose logs -f frontend   # follow logs
-docker compose exec frontend bash
+## Development With Docker (no local Node or .NET required)
+
+### Start Everything
+```bash
+docker compose up --build
+docker compose up
+docker compose up frontend      # frontend + api + database
+docker compose up api           # api + database
+docker compose up azuresqledge  # database only
+docker compose up --no-deps frontend  # frontend only, skip dependencies
 ```
+
+### Useful Commands
+```bash
+docker compose up -d                    # run in detached mode
+docker compose logs -f frontend         # follow frontend logs
+docker compose logs -f api              # follow api logs
+docker compose exec frontend bash       # shell into frontend
+docker compose exec api bash            # shell into api
+docker compose down                     # stop everything
+docker compose down -v                  # stop everything + delete database volume
+```
+
 
 ### Editor config (OPTIONAL)
 A neovim config is provided in `.docker/nvim/`.

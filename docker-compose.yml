@@ -5,7 +5,7 @@ services:
       dockerfile: frontend/Dockerfile.dev
     ports:
       - "5173:5173"
-    working_dir: /workspace/frontend    # vite commands run from here
+    working_dir: /workspace/frontend
     init: true
     env_file:
       - frontend/.env
@@ -16,6 +16,44 @@ services:
       - nvim-plugins:/root/.local/share/nvim
     stdin_open: true
     tty: true
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./api:/app
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Data Source=azuresqledge;User Id=sa;Password=Admin123$$;TrustServerCertificate=true;Trusted_Connection=false
+      - Jwt__Issuer=http://localhost:5000
+      - Jwt__Audience=http://localhost:5173
+      - Jwt__SigningKey=C0FuaH90hpoAVmcfXm2XnWKvGmlqdvF22bojh3WKciinjESWn9Ot3DBEoKMPSu9rBdjOojntAo+ZFo5pWewZLQ==
+    depends_on:
+      azuresqledge:
+        condition: service_healthy
+
+  azuresqledge:
+    image: mcr.microsoft.com/azure-sql-edge
+    cap_add:
+      - SYS_PTRACE
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=1
+      - MSSQL_SA_PASSWORD=Admin123$$
+    volumes:
+      - sqldata:/var/opt/mssql
+    healthcheck:
+      test: ["CMD", "bash", "-c", "(echo > /dev/tcp/localhost/1433) 2>/dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   nvim-plugins:
+  sqldata:
