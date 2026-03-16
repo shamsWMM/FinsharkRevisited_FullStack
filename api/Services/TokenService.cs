@@ -41,10 +41,10 @@ public class TokenService(IConfiguration config) : ITokenService
             Subject = new(claims),
             Expires = DateTime.Now.AddDays(7),
             SigningCredentials = creds,
-            Issuer = config["Jwt:Issuer" ?? throw new InvalidOperationException(
-                "Jwt Issuer not configured")],
-            Audience = config["Jwt:Audience" ?? throw new InvalidOperationException(
-                "Jwt Audience not configured")]
+            Issuer = config["Jwt:Issuer"] ?? throw new InvalidOperationException(
+                "Jwt Issuer not configured"),
+            Audience = config["Jwt:Audience"] ?? throw new InvalidOperationException(
+                "Jwt Audience not configured")
         };
         return tokenDescriptor;
     }

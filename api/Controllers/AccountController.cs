@@ -11,71 +11,71 @@ namespace api.Controllers;
 [Route("[controller]")]
 [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 public class AccountController(UserManager<AppUser> userManager,
-    ITokenService tokenService,
-    SignInManager<AppUser> signinManager) : ControllerBase
+		ITokenService tokenService,
+		SignInManager<AppUser> signinManager) : ControllerBase
 {
-    [HttpPost("login")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> LogIn(LoginRequestDto request)
-    {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
+	[HttpPost("login")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+			[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+				[ProducesResponseType(StatusCodes.Status400BadRequest)]
+					public async Task<IActionResult> LogIn(LoginRequestDto request)
+					{
+						if (!ModelState.IsValid)
+							return BadRequest(ModelState);
 
-        var user = await userManager.FindByEmailAsync(request.Email);
+						var user = await userManager.FindByEmailAsync(request.Email);
 
-        if (user == null)
-            return Unauthorized("Invalid credentials.");
+						if (user == null)
+							return Unauthorized("Invalid credentials.");
 
-        var result = await signinManager
-            .CheckPasswordSignInAsync(user, request.Password, false);
-        if (!result.Succeeded)
-            return Unauthorized("Unsuccessful login attempt.");
+						var result = await signinManager
+							.CheckPasswordSignInAsync(user, request.Password, false);
+						if (!result.Succeeded)
+							return Unauthorized("Unsuccessful login attempt.");
 
-        var userToken = tokenService.CreateToken(user);
-            return Ok(user.ToResponseDto(userToken));
-    }
+						var userToken = tokenService.CreateToken(user);
+						return Ok(user.ToResponseDto(userToken));
+					}
 
-    [HttpPost("register")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Register([FromBody] Dtos.AppUser.UserCreateRequestDto request)
-    {
-        try
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+	[HttpPost("register")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+			[ProducesResponseType(StatusCodes.Status400BadRequest)]
+				public async Task<IActionResult> Register([FromBody] Dtos.AppUser.UserCreateRequestDto request)
+				{
+					try
+					{
+						if (!ModelState.IsValid)
+							return BadRequest(ModelState);
 
-            var existingUser = await userManager.FindByEmailAsync(request.Email);
-            if (existingUser != null)
-            {
-                ModelState.AddModelError("Email", "Email is already registered");
-                return BadRequest(ModelState);
-            }
+						var existingUser = await userManager.FindByEmailAsync(request.Email);
+						if (existingUser != null)
+						{
+							ModelState.AddModelError("Email", "Email is already registered");
+							return BadRequest(ModelState);
+						}
 
-            var appUser = request.ToModel();
-           var createResult = await userManager.CreateAsync(appUser, request.Password);
-            
-            if (!createResult.Succeeded)
-            {
-                foreach (var error in createResult.Errors)
-                {
-                    ModelState.AddModelError(error.Code, error.Description);
-                }
-                return BadRequest(ModelState);
-            }
+						var appUser = request.ToModel();
+						var createResult = await userManager.CreateAsync(appUser, request.Password);
 
-            var roleResult = await userManager.AddToRoleAsync(appUser, "User");
-            if (!roleResult.Succeeded)
-                return StatusCode(500, roleResult.Errors);
+						if (!createResult.Succeeded)
+						{
+							foreach (var error in createResult.Errors)
+							{
+								ModelState.AddModelError(error.Code, error.Description);
+							}
+							return BadRequest(ModelState);
+						}
 
-            var token = tokenService.CreateToken(appUser);
-            return Ok(appUser.ToResponseDto(token));
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, new { message = "An error occurred during registration" });
-        }
-    }
+						var roleResult = await userManager.AddToRoleAsync(appUser, "User");
+						if (!roleResult.Succeeded)
+							return StatusCode(500, roleResult.Errors);
+
+						var token = tokenService.CreateToken(appUser);
+						return Ok(appUser.ToResponseDto(token));
+					}
+					catch (Exception ex)
+					{
+						return StatusCode(500, new { message = ex.Message, stackTrace = ex.StackTrace });
+					}
+				}
 }
